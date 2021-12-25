@@ -1,7 +1,9 @@
-import Demo from "../src/components/webgl/demo"
+import { Flex, Heading } from "@chakra-ui/react"
 
 const Index = () => (
-    <Demo />
+    <Flex>
+        <Heading size="4xl">Hello World</Heading>
+    </Flex>
 )
 
 export default Index
