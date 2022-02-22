@@ -13,6 +13,7 @@ import {
     WebGLRenderer,
     WebGLRenderTarget
 } from 'three'
+
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
 import { BuildingGenerator } from './building_generator'

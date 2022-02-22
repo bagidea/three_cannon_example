@@ -4,13 +4,13 @@ import {
     useRef
 } from "react"
 
-import { ModelTestCanvas } from "../src/components/model_test_canvas"
+import { SimpleOptimization } from "../src/components/simple_optimization"
 
 const Index = () => {
     const canvas: MutableRefObject<HTMLCanvasElement> = useRef(null)
 
     useEffect(() => {
-        const modelTestCanvas: ModelTestCanvas = new ModelTestCanvas(canvas.current)
+        const modelTestCanvas: SimpleOptimization = new SimpleOptimization(canvas.current)
         modelTestCanvas.init()
         modelTestCanvas.createScene()
         modelTestCanvas.postEffect()
