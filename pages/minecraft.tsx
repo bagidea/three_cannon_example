@@ -12,6 +12,7 @@ const Minecraft = () => {
     useEffect(() => {
         const game: MinecraftExample = new MinecraftExample(canvas.current)
         game.init()
+        game.create()
         game.render()
     }, [])
 
