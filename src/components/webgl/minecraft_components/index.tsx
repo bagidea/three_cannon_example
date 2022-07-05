@@ -65,7 +65,7 @@ export class MinecraftExample {
 
     create() {
         const boxGeometry: BoxGeometry = new BoxGeometry(1, 1, 1)
-        const boxMaterial: MeshBasicMaterial = new MeshBasicMaterial({ color: 0xffffff })
+        const boxMaterial: MeshBasicMaterial = new MeshBasicMaterial({ color: 0x00ff00 })
 
         //const box: Mesh = new Mesh(boxGeometry, boxMaterial)
         //this.scene.add(box)
