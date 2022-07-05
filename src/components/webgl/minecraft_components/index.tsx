@@ -13,6 +13,7 @@ import {
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise'
+import Stats from 'three/examples/jsm/libs/stats.module'
 
 export class MinecraftExample {
     private canvas: HTMLCanvasElement
@@ -24,6 +25,7 @@ export class MinecraftExample {
     private h: number
 
     private controls: OrbitControls
+    private stats: Stats
 
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas
@@ -59,6 +61,9 @@ export class MinecraftExample {
         this.controls = new OrbitControls(this.camera, this.canvas)
         this.controls.target = new Vector3(16, 0, 16)
         this.controls.update()
+
+        this.stats = Stats()
+        document.body.append(this.stats.dom)
 
         window.addEventListener('resize', this.windowResize)
     }
@@ -106,6 +111,7 @@ export class MinecraftExample {
 
     render = () => {
         requestAnimationFrame(this.render)
+        this.stats.update()
 
         this.renderer.render(this.scene, this.camera)
     }
