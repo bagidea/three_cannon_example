@@ -10,7 +10,9 @@ import {
     Vector3,
     WebGLRenderer
 } from 'three'
+
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { ImprovedNoise } from 'three/examples/jsm/math/ImprovedNoise'
 
 export class MinecraftExample {
     private canvas: HTMLCanvasElement
@@ -74,16 +76,31 @@ export class MinecraftExample {
         //const line: LineSegments = new LineSegments(edgesGeometry, edgesMaterial)
         //this.scene.add(line)
 
+        const noise: ImprovedNoise = new ImprovedNoise()
+
+        let xoff: number = 0
+        let zoff: number = 0
+        const inc: number = 0.05
+        const amplitute: number = 10
+
         for(let i: number = 0; i < 32; i++) {
+            xoff = 0
+
             for(let a: number = 0; a < 32; a++) {
+                const y: number = Math.round(noise.noise(xoff, zoff, 0) * amplitute)
+
                 const box: Mesh = new Mesh(boxGeometry, boxMaterial)
-                box.position.set(i, 0, a)
+                box.position.set(i, y, a)
                 this.scene.add(box)
 
                 const line: LineSegments = new LineSegments(edgesGeometry, edgesMaterial)
                 line.position.copy(box.position)
                 this.scene.add(line)
+
+                xoff += inc
             }
+
+            zoff += inc
         }
     }
 
