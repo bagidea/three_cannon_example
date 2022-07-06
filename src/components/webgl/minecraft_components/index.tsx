@@ -55,11 +55,14 @@ export class MinecraftExample {
         this.scene = new Scene()
 
         this.camera = new PerspectiveCamera(60, this.w/this.h, 0.1, 1000)
-        this.camera.position.set(16, 10, 40)
-        this.camera.lookAt(16, 0, 16)
+        this.camera.position.set(64, 10, 130)
+        this.camera.lookAt(64, 0, 64)
+
+        //this.camera.position.set(0, 2, 5)
+        //this.camera.lookAt(0, 0, 0)
 
         this.controls = new OrbitControls(this.camera, this.canvas)
-        this.controls.target = new Vector3(16, 0, 16)
+        this.controls.target = new Vector3(64, 0, 64)
         this.controls.update()
 
         this.stats = Stats()
@@ -75,6 +78,18 @@ export class MinecraftExample {
         //const box: Mesh = new Mesh(boxGeometry, boxMaterial)
         //this.scene.add(box)
 
+        /*const boxMaterials: MeshBasicMaterial[] = [
+            new MeshBasicMaterial({ color: 0xff0000 }),
+            new MeshBasicMaterial({ color: 0x00ff00 }),
+            new MeshBasicMaterial({ color: 0x0000ff }),
+            new MeshBasicMaterial({ color: 0xffff00 }),
+            new MeshBasicMaterial({ color: 0x00ffff }),
+            new MeshBasicMaterial({ color: 0xffffff })
+        ]
+
+        const box: Mesh = new Mesh(boxGeometry, boxMaterials)
+        this.scene.add(box)*/
+
         const edgesGeometry: EdgesGeometry = new EdgesGeometry(boxGeometry)
         const edgesMaterial: LineBasicMaterial = new LineBasicMaterial({ color: 0x000000 })
 
@@ -85,16 +100,26 @@ export class MinecraftExample {
 
         let xoff: number = 0
         let zoff: number = 0
-        const inc: number = 0.05
-        const amplitute: number = 10
+        const inc: number = 0.03
+        const amplitute: number = 20
 
-        for(let i: number = 0; i < 32; i++) {
-            xoff = 0
+        for(let i: number = 0; i < 128; i++) {
+            //xoff = 0
 
-            for(let a: number = 0; a < 32; a++) {
+            for(let a: number = 0; a < 128; a++) {
+                xoff = inc * i
+                zoff = inc * a
                 const y: number = Math.round(noise.noise(xoff, zoff, 0) * amplitute)
 
                 const box: Mesh = new Mesh(boxGeometry, boxMaterial)
+                /*const box: Mesh = new Mesh(boxGeometry, [
+                    null,
+                    null,
+                    boxMaterial,
+                    null,
+                    null,
+                    null
+                ])*/
                 box.position.set(i, y, a)
                 this.scene.add(box)
 
@@ -102,10 +127,10 @@ export class MinecraftExample {
                 line.position.copy(box.position)
                 this.scene.add(line)
 
-                xoff += inc
+                //xoff += inc
             }
 
-            zoff += inc
+            //zoff += inc
         }
     }
 
